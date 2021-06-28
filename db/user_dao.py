@@ -14,7 +14,7 @@ def fetch_user_info(db_conf: Mapping[str, str], user_id: str):
     asyncio.set_event_loop(loop)
 
     async def _fetch_user_info(loop: asyncio.AbstractEventLoop, user_id: str) -> Optional[pd.DataFrame]:
-        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user_svc'], db_conf['pw'], loop=loop)
+        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user'], db_conf['pw'], loop=loop)
 
         async with pool.acquire() as conn:
             async with conn.cursor() as cur:
@@ -64,7 +64,7 @@ def fetch_all_user_info(db_conf: Mapping[str, str]):
     asyncio.set_event_loop(loop)
 
     async def _fetch_all_user_info(loop: asyncio.AbstractEventLoop) -> Optional[pd.DataFrame]:
-        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user_svc'], db_conf['pw'], loop=loop)
+        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user'], db_conf['pw'], loop=loop)
 
         async with pool.acquire() as conn:
             async with conn.cursor() as cur:
@@ -109,7 +109,7 @@ def insert_user_info(db_conf: Mapping[str, str], user: User):
     asyncio.set_event_loop(loop)
 
     async def _insert_user_info(loop: asyncio.AbstractEventLoop, user: User) -> Optional[pd.DataFrame]:
-        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user_svc'], db_conf['pw'], loop=loop)
+        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user'], db_conf['pw'], loop=loop)
 
         async with pool.acquire() as conn:
             async with conn.cursor() as cur:
@@ -129,7 +129,7 @@ def update_user_info(db_conf: Mapping[str, str], user: User):
     asyncio.set_event_loop(loop)
 
     async def _update_user_info(loop: asyncio.AbstractEventLoop, user: User) -> Optional[pd.DataFrame]:
-        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user_svc'], db_conf['pw'], loop=loop)
+        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user'], db_conf['pw'], loop=loop)
         pass
 
     loop.run_until_complete(_update_user_info(loop, user))
@@ -141,7 +141,7 @@ def delete_user_info(db_conf: Mapping[str, str], user_id: str):
     asyncio.set_event_loop(loop)
 
     async def _delete_user_info(loop: asyncio.AbstractEventLoop, user_id: str) -> Optional[pd.DataFrame]:
-        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user_svc'], db_conf['pw'], loop=loop)
+        pool: aiomysql.Pool = await connect(db_conf['host'], int(db_conf['port']), db_conf['db'], db_conf['user'], db_conf['pw'], loop=loop)
 
         async with pool.acquire() as conn:
             async with conn.cursor() as cur:
