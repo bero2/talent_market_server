@@ -4,7 +4,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from auth.auth import db_conf, user_loader
 from db.user_dao import fetch_user_info
 
-login_bp = Blueprint('login_bp', __name__)
+login_bp = Blueprint('login_bp', __name__, url_prefix='/')
 
 
 @login_bp.route('/login', methods=['GET', 'POST'])
